@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">AndroidApp</string>
     <color name="white">#FFFFFF</color>
+    <string name="zone_1">Zone 1</string>
+    <string name="zone_2">Zone 2</string>
+    <string name="etud1">Etudiant 1</string>
+    <string name="etud2">Etudiant 2</string>
+    <string name="etud3">Etudiant 3</string>
 </resources>

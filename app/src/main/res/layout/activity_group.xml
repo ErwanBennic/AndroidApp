@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".GroupActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -18,19 +18,26 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="100dp"
-            android:layout_height="90dp"
+            android:id="@+id/buttonEtud1"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:layout_marginBottom="10dp"
-            android:onClick="goToGroups"
-            android:text="@string/zone_1" />
+            android:text="@string/etud1" />
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="100dp"
-            android:layout_height="90dp"
+            android:id="@+id/buttonEtud2"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
             android:layout_weight="1"
-            android:text="@string/zone_2" />
+            android:layout_marginBottom="10dp"
+            android:text="@string/etud2" />
+
+        <Button
+            android:id="@+id/buttonEtud3"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:text="@string/etud3" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
