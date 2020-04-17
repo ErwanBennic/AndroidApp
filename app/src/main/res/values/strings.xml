@@ -3,7 +3,18 @@
     <color name="white">#FFFFFF</color>
     <string name="zone_1">Zone 1</string>
     <string name="zone_2">Zone 2</string>
-    <string name="etud1">Etudiant 1</string>
-    <string name="etud2">Etudiant 2</string>
-    <string name="etud3">Etudiant 3</string>
+    <string name="info">Info Etudiant</string>
+    <string name="site_epsi">http://www.epsi.fr/</string>
+    <!--Etudiant 1 -->
+    <string name="etud1_nom">Erwan BENNIC</string>
+    <string name="etud1_email">erwan.bennic@epsi.fr</string>
+    <string name="etud1_group">B3 G1</string>
+    <!--Etudiant 2 -->
+    <string name="etud2_nom">Kenny Guiroy</string>
+    <string name="etud2_email">kenny.guiroy@epsi.fr</string>
+    <string name="etud2_group">B3 G1</string>
+    <!--Etudiant 3 -->
+    <string name="etud3_nom">Matthieu THEODORE</string>
+    <string name="etud3_email">matthieu.theodore@epsi.fr</string>
+    <string name="etud3_group">B3 G1</string>
 </resources>

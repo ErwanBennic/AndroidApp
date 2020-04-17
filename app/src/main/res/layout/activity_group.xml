@@ -23,7 +23,8 @@
             android:layout_height="70dp"
             android:layout_weight="1"
             android:layout_marginBottom="10dp"
-            android:text="@string/etud1" />
+            android:onClick="goToEtud1"
+            android:text="@string/etud1_nom" />
 
         <Button
             android:id="@+id/buttonEtud2"
@@ -31,13 +32,15 @@
             android:layout_height="70dp"
             android:layout_weight="1"
             android:layout_marginBottom="10dp"
-            android:text="@string/etud2" />
+            android:onClick="goToEtud2"
+            android:text="@string/etud2_nom" />
 
         <Button
             android:id="@+id/buttonEtud3"
             android:layout_width="140dp"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:text="@string/etud3" />
+            android:onClick="goToEtud3"
+            android:text="@string/etud3_nom" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
