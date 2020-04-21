@@ -20,7 +20,7 @@ class CategoryDetailsActivity extends AppCompatActivity {
     }
 
     private void getDetails(String product_url) {
-        new HttpAsyncTask(product_url, "GET", new HttpAsyncTask.HttpAsyncTaskListener() {
+        new HttpAsyncTask(product_url, new HttpAsyncTask.HttpAsyncTaskListener() {
             @Override
             public void webServiceDone(String result) {
                 //TODO

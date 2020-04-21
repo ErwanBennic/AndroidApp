@@ -21,22 +21,23 @@ public class HttpAsyncTask extends AsyncTask<Void,Void,Object> {
 
     private HttpAsyncTaskListener httpAsyncTaskListener;
 
-    private String products_url;
-    private String method = "GET";
+    private String url;
 
-    public HttpAsyncTask(String products_url, String method, HttpAsyncTaskListener listener) {
-        httpAsyncTaskListener = listener;
-        this.products_url = products_url;
-        this.method = method;
+    public HttpAsyncTask(String url, HttpAsyncTaskListener listener) {
+        this.httpAsyncTaskListener = listener;
+        this.url = url;
     }
 
     @Override
     protected Object doInBackground(Void... voids) {
         try {
-            return call(products_url);
+            return call(this.url);
         }
-        catch (IOException | JSONException e) {
+        catch (JSONException e) {
             return "La réponse http ne correspond pas au format souhaité";
+        }
+        catch (IOException e) {
+            return "InputStream bug";
         }
     }
 
@@ -51,20 +52,23 @@ public class HttpAsyncTask extends AsyncTask<Void,Void,Object> {
     }
 
 
-    public Object call(String products_url) throws IOException, JSONException {
-        URL url = new URL(products_url);
+    public Object call(String targetUrl) throws IOException, JSONException {
+        URL url = new URL(targetUrl);
         HttpURLConnection client = null;
 
-        client = (HttpURLConnection) url.openConnection();
-        client.setRequestMethod("GET");
-        client.setRequestProperty("Content-Type", "application/json; utf-8");
-        client.setRequestProperty("Accept", "application/json");
-
-        InputStream in = new BufferedInputStream(client.getInputStream());
-        String responseBody = convertStreamToString(in);
-
-        JSONObject jsonObject = new JSONObject(responseBody);
-        return jsonObject.getJSONArray("items");
+        try {
+            client = (HttpURLConnection) url.openConnection();
+            InputStream in = new BufferedInputStream(client.getInputStream());
+            String responseBody = convertStreamToString(in);
+            System.out.println(responseBody);
+            JSONObject jsonObject = new JSONObject(responseBody);
+            return jsonObject.getJSONArray("items");
+        }
+        finally {
+            if(client != null) {
+                client.disconnect();
+            }
+        }
     }
 
     private String convertStreamToString(InputStream is) {
