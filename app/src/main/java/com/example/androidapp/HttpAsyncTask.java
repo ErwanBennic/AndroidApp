@@ -60,7 +60,6 @@ public class HttpAsyncTask extends AsyncTask<Void,Void,Object> {
             client = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(client.getInputStream());
             String responseBody = convertStreamToString(in);
-            System.out.println(responseBody);
             JSONObject jsonObject = new JSONObject(responseBody);
             return jsonObject.getJSONArray("items");
         }

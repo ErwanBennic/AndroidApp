@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CategoriesActivity extends AppCompatActivity {
 
     private CategoriesAdapter categoriesAdapter;
-    private JSONArray jsonCategories;
+    private List<Category> categories;
 
     public static void display(AppCompatActivity activity) {
         Intent intent = new Intent(activity, CategoriesActivity.class);
@@ -33,15 +33,10 @@ public class CategoriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
         setTitle("Catégories");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        this.getCategories();
+    }
 
-        //this.getCategories();
-        try {
-            this.jsonCategories = new JSONArray("[{\"category_id\": \"1\",\"title\": \"Boissons\",\"products_url\": \"http://djemam.com/epsi/boissons.json\"},{\"category_id\": \"2\",\"title\": \"Fromages\",\"products_url\": \"http://djemam.com/epsi/fromages.json\"},{\"category_id\": \"3\",\"title\": \"Surgelés\",\"products_url\": \"http://djemam.com/epsi/surgeles.json\"},{\"category_id\": \"4\",\"title\": \"Sauces\",\"products_url\": \"http://djemam.com/epsi/sauces.json\"}]");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        final List<Category> categories = this.initCategories();
+    private void generateCategoriesListView() {
         ListView listView = findViewById(R.id.categories_listview);
         categoriesAdapter = new CategoriesAdapter(this,R.layout.categories_cell, categories);
         listView.setAdapter(categoriesAdapter);
@@ -53,12 +48,14 @@ public class CategoriesActivity extends AppCompatActivity {
         });
     }
 
-    private List<Category> initCategories() {
-        int nbCategory = this.jsonCategories.length();
-        System.out.println(this.jsonCategories.toString());
+
+    private List<Category> initCategories(String result) throws JSONException {
+
+        JSONArray jsonCategories = new JSONArray(result);
         List<Category> categories = new ArrayList<>();
 
-        for(int i = 0; i < nbCategory; i++) {
+        int nbCategories = jsonCategories.length();
+        for(int i = 0; i < nbCategories; i++) {
             Category category = null;
             try {
                 JSONObject categoryJson = jsonCategories.getJSONObject(i);
@@ -66,16 +63,16 @@ public class CategoriesActivity extends AppCompatActivity {
                 categories.add(category);
             } catch (JSONException e) {}
         }
-        return  categories;
+        return categories;
     }
 
     private void getCategories() {
         new HttpAsyncTask("http://djemam.com/epsi/categories.json", new HttpAsyncTask.HttpAsyncTaskListener() {
             @Override
-            public void webServiceDone(String categories) {
+            public void webServiceDone(String result) {
                 try {
-                    System.out.println("Nompe" + categories);
-                    jsonCategories = new JSONArray(categories);
+                    categories = initCategories(result);
+                    generateCategoriesListView();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
