@@ -14,7 +14,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-class CategoriesAdapter extends ArrayAdapter<Category> {
+public class CategoriesAdapter extends ArrayAdapter<Category> {
 
     public CategoriesAdapter(@NonNull Context context, int resource, @NonNull List<Category> objects) {
         super(context, resource, objects);

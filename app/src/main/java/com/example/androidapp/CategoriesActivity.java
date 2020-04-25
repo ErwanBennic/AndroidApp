@@ -48,7 +48,6 @@ public class CategoriesActivity extends AppCompatActivity {
         });
     }
 
-
     private List<Category> initCategories(String result) throws JSONException {
 
         JSONArray jsonCategories = new JSONArray(result);
