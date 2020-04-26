@@ -5,22 +5,21 @@ import org.json.JSONObject;
 
 public class Products {
 
-    private String nom;
+    private String name;
     private String description;
     private String pictures_url;
 
     public Products(JSONObject productJson) throws JSONException {
-        this.nom = productJson.getString("nom");
+        this.name = productJson.getString("name");
         this.description = productJson.getString("description");
         this.pictures_url = productJson.getString("pictures_url");
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
-
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNom(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

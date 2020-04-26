@@ -16,6 +16,8 @@
         <activity android:name=".StudentInfoActivity" />
         <activity android:name=".StudentInfoActivity2" />
         <activity android:name=".StudentInfoActivity3" />
+        <activity android:name=".ProductDetailActivity"/>
+        <activity android:name=".ProductListActivity"/>
         <activity android:name=".CategoriesActivity" />
         <activity android:name=".GroupActivity" />
         <activity android:name=".HomeActivity" />

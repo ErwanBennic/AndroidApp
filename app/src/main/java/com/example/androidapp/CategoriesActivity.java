@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.model.Category;
+import com.example.model.Products;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +21,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CategoriesActivity extends AppCompatActivity {
 
     private CategoriesAdapter categoriesAdapter;
+    private ProductListAdapter productlistAdapter;
     private List<Category> categories;
+    private List<Products> products;
 
     public static void display(AppCompatActivity activity) {
         Intent intent = new Intent(activity, CategoriesActivity.class);
@@ -43,7 +46,7 @@ public class CategoriesActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CategoryDetailsActivity.display(CategoriesActivity.this, categories.get(position).getProducts_url());
+                ProductListActivity.display(CategoriesActivity.this, categories.get(position).getProducts_url());
             }
         });
     }
@@ -60,7 +63,9 @@ public class CategoriesActivity extends AppCompatActivity {
                 JSONObject categoryJson = jsonCategories.getJSONObject(i);
                 category = new Category(categoryJson);
                 categories.add(category);
-            } catch (JSONException e) {}
+            } catch (JSONException e) {
+
+            }
         }
         return categories;
     }
