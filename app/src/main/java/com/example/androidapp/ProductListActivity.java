@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,13 +20,14 @@ import java.util.List;
 
 public class ProductListActivity extends AppCompatActivity {
 
-    private Products produit;
     private ProductListAdapter productsAdapter;
     private List<Products> produits;
+    private List<Products> products = new ArrayList<>();
+
 
     public static void display(AppCompatActivity activity, String nomproduct) {
         Intent intent = new Intent(activity, ProductListActivity.class);
-        intent.putExtra("nom", nomproduct);
+        intent.putExtra("name", nomproduct);
         activity.startActivity(intent);
     }
 
@@ -35,7 +37,6 @@ public class ProductListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_list);
         setTitle("Produits Liste");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         this.getProductList();
 
 
@@ -43,7 +44,7 @@ public class ProductListActivity extends AppCompatActivity {
     private List<Products> initProducts(String result) throws JSONException {
 
         JSONArray jsonProducts = new JSONArray(result);
-        List<Products> products = new ArrayList<>();
+        //List<Products> products = new ArrayList<>();
 
         int nbProducts = jsonProducts.length();
         for(int i = 0; i < nbProducts; i++) {
@@ -61,14 +62,14 @@ public class ProductListActivity extends AppCompatActivity {
 
     private void generateProductsListView() {
         ListView listView = findViewById(R.id.products_listView);
-        productsAdapter = new ProductListAdapter(this,R.layout.products_cell, produits);
+        productsAdapter = new ProductListAdapter(this,R.layout.activity_product_list, (ArrayList<Products>) produits);
         listView.setAdapter(productsAdapter);
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ProductDetailActivity.display(ProductListActivity.this, produits.get(position).getNom());
+                ProductDetailActivity.display(ProductListActivity.this, produits.get(position).getPictures_url());
             }
-        });*/
+        });
     }
 
     private void getProductList() {

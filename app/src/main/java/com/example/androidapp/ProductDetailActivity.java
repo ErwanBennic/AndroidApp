@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ProductDetailActivity extends  AppCompatActivity {
 
-    public static void display(AppCompatActivity activity, String products_url) {
+    public static void display(AppCompatActivity activity, String picture_url) {
         Intent intent = new Intent(activity, ProductsActivity.class);
-        intent.putExtra("products_url", products_url);
+        intent.putExtra("pictures_url", picture_url);
         activity.startActivity(intent);
     }
 

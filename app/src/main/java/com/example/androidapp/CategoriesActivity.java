@@ -21,9 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CategoriesActivity extends AppCompatActivity {
 
     private CategoriesAdapter categoriesAdapter;
-    private ProductListAdapter productlistAdapter;
     private List<Category> categories;
-    private List<Products> products;
 
     public static void display(AppCompatActivity activity) {
         Intent intent = new Intent(activity, CategoriesActivity.class);
