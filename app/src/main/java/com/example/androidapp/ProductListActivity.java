@@ -22,7 +22,6 @@ public class ProductListActivity extends AppCompatActivity {
 
     private ProductListAdapter productsAdapter;
     private List<Products> produits;
-    private List<Products> products = new ArrayList<>();
 
 
     public static void display(AppCompatActivity activity, String nomproduct) {
@@ -44,7 +43,7 @@ public class ProductListActivity extends AppCompatActivity {
     private List<Products> initProducts(String result) throws JSONException {
 
         JSONArray jsonProducts = new JSONArray(result);
-        //List<Products> products = new ArrayList<>();
+        List<Products> products = new ArrayList<>();
 
         int nbProducts = jsonProducts.length();
         for(int i = 0; i < nbProducts; i++) {
@@ -54,7 +53,7 @@ public class ProductListActivity extends AppCompatActivity {
                 product = new Products(productJson);
                 products.add(product);
             } catch (JSONException e) {
-
+                System.out.println("Erreur");
             }
         }
         return products;
@@ -62,12 +61,12 @@ public class ProductListActivity extends AppCompatActivity {
 
     private void generateProductsListView() {
         ListView listView = findViewById(R.id.products_listView);
-        productsAdapter = new ProductListAdapter(this,R.layout.activity_product_list, (ArrayList<Products>) produits);
+        productsAdapter = new ProductListAdapter(this, R.layout.products_cell, produits);
         listView.setAdapter(productsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ProductDetailActivity.display(ProductListActivity.this, produits.get(position).getPictures_url());
+                //ProductDetailActivity.display(ProductListActivity.this, produits.get(position).getPictures_url());
             }
         });
     }
@@ -78,6 +77,7 @@ public class ProductListActivity extends AppCompatActivity {
             public void webServiceDone(String result) {
                 try {
                     produits = initProducts(result);
+                    System.out.println(produits.size());
                     generateProductsListView();
                 } catch (JSONException e) {
                     e.printStackTrace();

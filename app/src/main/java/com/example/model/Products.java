@@ -7,12 +7,12 @@ public class Products {
 
     private String name;
     private String description;
-    private String pictures_url;
+    private String picture_url;
 
     public Products(JSONObject productJson) throws JSONException {
         this.name = productJson.getString("name");
         this.description = productJson.getString("description");
-        this.pictures_url = productJson.getString("pictures_url");
+        this.picture_url = productJson.getString("picture_url");
     }
 
     public String getName() {
@@ -30,11 +30,11 @@ public class Products {
         this.description = description;
     }
 
-    public String getPictures_url() {
-        return pictures_url;
+    public String getPicture_url() {
+        return picture_url;
     }
 
-    public void setPictures_url(String pictures_url) {
-        this.pictures_url = pictures_url;
+    public void setPicture_url(String pictures_url) {
+        this.picture_url = pictures_url;
     }
 }
