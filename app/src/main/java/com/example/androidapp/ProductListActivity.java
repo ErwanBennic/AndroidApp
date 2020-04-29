@@ -1,20 +1,31 @@
 package com.example.androidapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.model.Category;
 import com.example.model.Products;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +33,13 @@ public class ProductListActivity extends AppCompatActivity {
 
     private ProductListAdapter productsAdapter;
     private List<Products> produits;
+    private Products produit;
 
 
-    public static void display(AppCompatActivity activity, String nomproduct) {
+
+    public static void display(AppCompatActivity activity, String urlProduct) {
         Intent intent = new Intent(activity, ProductListActivity.class);
-        intent.putExtra("name", nomproduct);
+        intent.putExtra("url", urlProduct);
         activity.startActivity(intent);
     }
 
@@ -66,13 +79,14 @@ public class ProductListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //ProductDetailActivity.display(ProductListActivity.this, produits.get(position).getPictures_url());
+                ProductDetailActivity.display(ProductListActivity.this, produits.get(position).getName());
             }
         });
     }
 
+
     private void getProductList() {
-        new HttpAsyncTask("http://djemam.com/epsi/boissons.json", new HttpAsyncTask.HttpAsyncTaskListener() {
+        new HttpAsyncTask("boissons", new HttpAsyncTask.HttpAsyncTaskListener() {
             @Override
             public void webServiceDone(String result) {
                 try {

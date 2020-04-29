@@ -69,7 +69,7 @@ public class CategoriesActivity extends AppCompatActivity {
     }
 
     private void getCategories() {
-        new HttpAsyncTask("http://djemam.com/epsi/categories.json", new HttpAsyncTask.HttpAsyncTaskListener() {
+        new HttpAsyncTask("categories", new HttpAsyncTask.HttpAsyncTaskListener() {
             @Override
             public void webServiceDone(String result) {
                 try {

@@ -27,7 +27,7 @@
             app:srcCompat="@drawable/user" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewDescriptionProduct"
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

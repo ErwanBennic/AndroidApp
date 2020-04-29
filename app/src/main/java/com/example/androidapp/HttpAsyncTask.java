@@ -14,6 +14,14 @@ import java.net.URL;
 
 public class HttpAsyncTask extends AsyncTask<Void,Void,Object> {
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     interface HttpAsyncTaskListener{
         void webServiceDone(String result);
         void webServiceError(Exception e);
@@ -25,13 +33,14 @@ public class HttpAsyncTask extends AsyncTask<Void,Void,Object> {
 
     public HttpAsyncTask(String url, HttpAsyncTaskListener listener) {
         this.httpAsyncTaskListener = listener;
-        this.url = url;
+        this.setUrl("http://djemam.com/epsi/"+url+".json");
     }
+
 
     @Override
     protected Object doInBackground(Void... voids) {
         try {
-            return call(this.url);
+            return call(this.getUrl());
         }
         catch (JSONException e) {
             return "La réponse http ne correspond pas au format souhaité";
