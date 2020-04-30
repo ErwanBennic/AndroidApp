@@ -36,6 +36,12 @@ public class CategoriesActivity extends AppCompatActivity {
         this.getCategories();
     }
 
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
     private void generateCategoriesListView() {
         ListView listView = findViewById(R.id.categories_listview);
         categoriesAdapter = new CategoriesAdapter(this,R.layout.categories_cell, categories);

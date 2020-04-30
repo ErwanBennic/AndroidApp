@@ -46,6 +46,12 @@ public class ProductDetailActivity extends  AppCompatActivity {
         generateProductDetail();
     }
 
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
     private void generateProductDetail(){
         ImageView imageView = findViewById(R.id.imageViewProduct);
         Picasso.get().load(produit.getPicture_url()).into(imageView);

@@ -49,6 +49,12 @@ public class ProductListActivity extends AppCompatActivity {
         this.getProductList();
     }
 
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
     private List<Products> initProducts(String result) throws JSONException {
 
         JSONArray jsonProducts = new JSONArray(result);
