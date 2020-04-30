@@ -9,9 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.model.Category;
 import com.example.model.Products;
 
 import java.util.ArrayList;

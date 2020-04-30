@@ -13,14 +13,18 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.model.Products;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class ProductDetailActivity extends  AppCompatActivity {
 
     private Products produit;
 
-    public static void display(AppCompatActivity activity,String Nomproduct) {
-        Intent intent = new Intent(activity, ProductsActivity.class);
-        intent.putExtra("nomproduct",Nomproduct);
+    public static void display(AppCompatActivity activity, String products) {
+        Intent intent = new Intent(activity, ProductDetailActivity.class);
+        intent.putExtra("products", products);
         activity.startActivity(intent);
     }
 
@@ -30,22 +34,24 @@ public class ProductDetailActivity extends  AppCompatActivity {
         setContentView(R.layout.activity_product_details);
         setTitle("Produit Détail");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Intent intent = getIntent();
+
+        try {
+            JSONObject jsonProducts = new JSONObject(intent.getStringExtra("products"));
+            produit = new Products(jsonProducts);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         generateProductDetail();
     }
 
     private void generateProductDetail(){
         ImageView imageView = findViewById(R.id.imageViewProduct);
-        Bitmap bitmap = BitmapFactory.decodeFile(produit.getPicture_url());
-        imageView.setImageBitmap(bitmap);
+        Picasso.get().load(produit.getPicture_url()).into(imageView);
 
         TextView textViewDescription = findViewById(R.id.textViewDescriptionProduct);
         textViewDescription.setText(produit.getDescription());
-
+        setTitle(produit.getName());
     }
-
-    /*private void generateProductsListView() {
-        ListView listView = findViewById(R.id.listViewDetailProduct);
-        productsAdapter = new ProductListAdapter(this, R.layout.products_cell, produits);
-        listView.setAdapter(productsAdapter);
-    }*/
 }

@@ -33,9 +33,6 @@ public class ProductListActivity extends AppCompatActivity {
 
     private ProductListAdapter productsAdapter;
     private List<Products> produits;
-    private Products produit;
-
-
 
     public static void display(AppCompatActivity activity, String urlProduct) {
         Intent intent = new Intent(activity, ProductListActivity.class);
@@ -50,9 +47,8 @@ public class ProductListActivity extends AppCompatActivity {
         setTitle("Produits Liste");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getProductList();
-
-
     }
+
     private List<Products> initProducts(String result) throws JSONException {
 
         JSONArray jsonProducts = new JSONArray(result);
@@ -79,19 +75,22 @@ public class ProductListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ProductDetailActivity.display(ProductListActivity.this, produits.get(position).getName());
+                ProductDetailActivity.display(ProductListActivity.this, produits.get(position).getJson());
             }
         });
     }
 
 
     private void getProductList() {
-        new HttpAsyncTask("boissons", new HttpAsyncTask.HttpAsyncTaskListener() {
+        Intent intent = getIntent();
+        String url = intent.getStringExtra("url");
+        System.out.println(url);
+        new HttpAsyncTask(url, new HttpAsyncTask.HttpAsyncTaskListener() {
             @Override
             public void webServiceDone(String result) {
                 try {
+                    System.out.println(result);
                     produits = initProducts(result);
-                    System.out.println(produits.size());
                     generateProductsListView();
                 } catch (JSONException e) {
                     e.printStackTrace();

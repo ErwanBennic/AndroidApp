@@ -37,4 +37,8 @@ public class Products {
     public void setPicture_url(String pictures_url) {
         this.picture_url = pictures_url;
     }
+
+    public String getJson() {
+        return "{ \"name\": \"" + this.getName() + "\", \"description\":\"" + this.getDescription() + "\", \"picture_url\":\"" + this.getPicture_url() + "\"}";
+    }
 }

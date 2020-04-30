@@ -17,7 +17,6 @@
         <activity android:name=".StudentInfoActivity2" />
         <activity android:name=".StudentInfoActivity3" />
         <activity android:name=".ProductDetailActivity"/>
-        <activity android:name=".ProductListActivity"/>
         <activity android:name=".CategoriesActivity" />
         <activity android:name=".GroupActivity" />
         <activity android:name=".HomeActivity" />
@@ -28,6 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ProductListActivity" />
     </application>
 
 </manifest>

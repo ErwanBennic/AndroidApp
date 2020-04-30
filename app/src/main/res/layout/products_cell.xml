@@ -15,10 +15,6 @@
             android:layout_centerInParent="true"
             android:textSize="16sp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerViewProducts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </RelativeLayout>
 
 </LinearLayout>

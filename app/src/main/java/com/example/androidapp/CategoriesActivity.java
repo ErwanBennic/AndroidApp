@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.model.Category;
-import com.example.model.Products;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,7 +68,7 @@ public class CategoriesActivity extends AppCompatActivity {
     }
 
     private void getCategories() {
-        new HttpAsyncTask("categories", new HttpAsyncTask.HttpAsyncTaskListener() {
+        new HttpAsyncTask("http://djemam.com/epsi/categories.json", new HttpAsyncTask.HttpAsyncTaskListener() {
             @Override
             public void webServiceDone(String result) {
                 try {
